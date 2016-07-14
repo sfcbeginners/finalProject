@@ -73,6 +73,13 @@ function loopMusic(){
   audio.play();
 }
 
+function changeMusicRate(){
+    console.log("ok")
+    var audio = document.querySelector("audio");
+    audio.playbackRate  = 2;
+}
+
+
 var playButton = document.querySelector("#play");
 var pauseButton = document.querySelector("#pause");
 var skip10secButton = document.querySelector("#skip10sec");
@@ -95,6 +102,8 @@ volumeUpButton.addEventListener("click", volumeUp);
 play00.addEventListener("click", changetoMusic00);
 play01.addEventListener("click", changetoMusic01);
 //loopMusicButton.addEventListener("click", loopMusic);
+var musicRateButton = document.querySelector("#musicRate");
+musicRateButton.addEventListener("click", changeMusicRate);
 
 var player = document.querySelector("audio");
 player.addEventListener("ended", loopMusic);
