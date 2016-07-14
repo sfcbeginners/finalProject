@@ -1,3 +1,5 @@
+// アプリのJSファイル
+
 function play(){
   var audio;
   audio = document.querySelector("audio");
