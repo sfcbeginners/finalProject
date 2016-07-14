@@ -63,16 +63,6 @@ function changetoMusic01(){
   changeMusic("audio/01.mp3");
 }
 
-function loopMusic(){
-    console.log("ok");
-    //audio.currentTime = 0;
-    //audio.play();
-    var audio;
-  audio = document.querySelector("audio");
-  audio.currentTime = 0;
-  audio.play();
-}
-
 var playButton = document.querySelector("#play");
 var pauseButton = document.querySelector("#pause");
 var skip10secButton = document.querySelector("#skip10sec");
@@ -83,7 +73,6 @@ var volumeDownButton = document.querySelector("#volumeDown");
 var volumeUpButton = document.querySelector("#volumeUp");
 var changeMusic00 = document.querySelector("#play00");
 var changeMusic01 = document.querySelector("#play01");
-//var loopMusicButton = document.querySelector("#loop");
 playButton.addEventListener("click", play);
 pauseButton.addEventListener("click", pause);
 skip10secButton.addEventListener("click", skip10sec);
@@ -94,7 +83,3 @@ volumeDownButton.addEventListener("click", volumeDown);
 volumeUpButton.addEventListener("click", volumeUp);
 play00.addEventListener("click", changetoMusic00);
 play01.addEventListener("click", changetoMusic01);
-//loopMusicButton.addEventListener("click", loopMusic);
-
-var player = document.querySelector("audio");
-player.addEventListener("ended", loopMusic);
