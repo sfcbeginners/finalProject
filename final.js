@@ -58,6 +58,14 @@ function changetoMusic01(){
   changeMusic("audio/01.mp3");
 }
 
+function changetoMusic02(){
+  changeMusic("audio/02.mp3");
+}
+
+function changetoMusic03(){
+  changeMusic("audio/03.mp3");
+}
+
 function loopMusic(){
     console.log("ok");
   var audio = document.getElementById("mainAudio");
@@ -99,6 +107,12 @@ play00.addEventListener("click", changetoMusic00);
 
 var changeMusic01 = document.getElementById("play01");
 play01.addEventListener("click", changetoMusic01);
+
+var changeMusic02 = document.getElementById("play02");
+play02.addEventListener("click", changetoMusic02);
+
+var changeMusic03 = document.getElementById("play03");
+play03.addEventListener("click", changetoMusic03);
 
 var musicRateButton = document.getElementById("musicRate");
 musicRateButton.addEventListener("click", changeMusicRate);
