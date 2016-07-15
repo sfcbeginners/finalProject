@@ -58,6 +58,14 @@ function changetoMusic01(){
   changeMusic("audio/01.mp3");
 }
 
+function changetoMusic02(){
+  changeMusic("audio/02.mp3");
+}
+
+function changetoMusic03(){
+  changeMusic("audio/03.mp3");
+}
+
 function loopMusic(){
     console.log("ok");
   var audio = document.getElementById("mainAudio");
@@ -100,6 +108,12 @@ play00.addEventListener("click", changetoMusic00);
 var changeMusic01 = document.getElementById("play01");
 play01.addEventListener("click", changetoMusic01);
 
+var changeMusic02 = document.getElementById("play02");
+play02.addEventListener("click", changetoMusic02);
+
+var changeMusic03 = document.getElementById("play03");
+play03.addEventListener("click", changetoMusic03);
+
 var musicRateButton = document.getElementById("musicRate");
 musicRateButton.addEventListener("click", changeMusicRate);
 
@@ -112,21 +126,22 @@ var source = audioContext.createMediaElementSource(mainAudio);
 var mazDelayTime = 1;
 
 var dry = audioContext.createGain();
-source.connect(dry);
 dry.connect(audioContext.destination);
 
 var wet = audioContext.createGain();
 var delay = audioContext.createDelay();
 var feedback = audioContext.createGain();
+dry.gain.value = 0.8;
+wet.gain.value = 0.2;
+feedback.gain.value = 0.6;
+delay.delayTime.value = 0.2;
 
-
-source.connect(delay);
 delay.connect(wet);
 delay.connect(feedback);
 wet.connect(audioContext.destination);
-source.connect(feedback);
 feedback.connect(delay);
 
-//var lowpass = audioContext.createBiquadFilter();
+var lowpass = audioContext.createBiquadFilter();
 source.connect(lowpass);
-lowpass.connect(audioContext.destination);
+lowpass.connect(delay);
+lowpass.connect(dry);
