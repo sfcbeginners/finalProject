@@ -61,7 +61,7 @@ function changetoMusic01(){
 function loopMusic(){
     console.log("ok");
   var audio = document.getElementById("mainAudio");
-  audio.currentTime = 0;
+  mainAudio.currentTime = 0;
   mainAudio.play();
 }
 
@@ -70,6 +70,7 @@ function changeMusicRate(){
     var audio = document.getElementById("mainAudio");
     mainAudio.playbackRate  = 2;
 }
+
 
 
 var playButton = document.getElementById("play");
@@ -107,3 +108,7 @@ player.addEventListener("ended", loopMusic);
 
 var audioContext = new AudioContext();
 var source = audioContext.createMediaElementSource(mainAudio);
+
+var lowpass = audioContext.createBiquadFilter();
+source.connect(lowpass);
+lowpass.connect(audioContext.destination);
