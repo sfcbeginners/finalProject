@@ -112,7 +112,6 @@ var source = audioContext.createMediaElementSource(mainAudio);
 var mazDelayTime = 1;
 
 var dry = audioContext.createGain();
-source.connect(dry);
 dry.connect(audioContext.destination);
 
 var wet = audioContext.createGain();
@@ -123,12 +122,12 @@ wet.gain.value = 0.2;
 feedback.gain.value = 0.6;
 delay.delayTime.value = 0.2;
 
-source.connect(delay);
 delay.connect(wet);
 delay.connect(feedback);
 wet.connect(audioContext.destination);
 feedback.connect(delay);
 
-//var lowpass = audioContext.createBiquadFilter();
+var lowpass = audioContext.createBiquadFilter();
 source.connect(lowpass);
-lowpass.connect(audioContext.destination);
+lowpass.connect(delay);
+lowpass.connect(dry);
