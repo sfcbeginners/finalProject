@@ -1,58 +1,53 @@
-// アプリのJSファイル
+
+var mainAudio = document.getElementById("audioElement");
+/* ここでmainaudioを作ってる理由はいちいちhtmlに参照しに行く手間を省かせるために
+一括でここに集まるように */
 
 function play(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.play();
-}
-
-function pause(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.pause();
+  if(mainAudio.paused){
+    mainAudio.play();
+    playButton.innerHTML = "一時停止" //再生中に一時停止ボタンを表示させる
+  }else{
+    mainAudio.pause();
+    playButton.innerHTML = "再開" //停止中に再開ボタンを表示させる
+  }
 }
 
 function skip10sec(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.currentTime = audio.currentTime + 10;
+  mainAudio.currentTime = mainAudio.currentTime +10;
 }
 
 function back10sec(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.currentTime = audio.currentTime - 10;
+   mainAudio.currentTime = mainAudio.currentTime -10;
 }
 
 function stop(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.currentTime = 0;
-  audio.pause();
+  mainAudio.currentTime = 0;
+  mainAudio.pause();
+  playButton.innerHTML = "再生" 
+  //再生中は再生ボタンが一時停止ボタンに置き換わってるので停止ボタン押したら再生ボタンに戻す
 }
 
 function mute(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.muted = true;
+  if (mainAudio.muted){
+    muteButton.innerHTML = "ミュート";
+  }else{
+    muteButton.innerHTML = "ミュート解除";
+  }
+  mainAudio.muted = !mainAudio.muted;
 }
 
 function volumeDown(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.volume = Math.max(audio.volume - 0.1, 0);
+  mainAudio.volume = Math.max(mainAudio.volume - 0.1, 0);
 }
 
 function volumeUp(){
-  var audio;
-  audio = document.querySelector("audio");
-  audio.volume = Math.min(audio.volume + 0.1, 1);
+  mainAudio.volume = Math.min(mainAudio.volume + 0.1, 1);
 }
 
 function changeMusic(music){
-  var audio = document.querySelector("audio");
-  audio.src = music;
-  audio.play();
+  mainAudio.src = music;
+  mainAudio.play();
 }
 
 function changetoMusic00(){
@@ -65,45 +60,50 @@ function changetoMusic01(){
 
 function loopMusic(){
     console.log("ok");
-    //audio.currentTime = 0;
-    //audio.play();
-    var audio;
-  audio = document.querySelector("audio");
+  var audio = document.getElementById("mainAudio");
   audio.currentTime = 0;
-  audio.play();
+  mainAudio.play();
 }
 
 function changeMusicRate(){
     console.log("ok")
-    var audio = document.querySelector("audio");
-    audio.playbackRate  = 2;
+    var audio = document.getElementById("mainAudio");
+    mainAudio.playbackRate  = 2;
 }
 
 
-var playButton = document.querySelector("#play");
-var pauseButton = document.querySelector("#pause");
-var skip10secButton = document.querySelector("#skip10sec");
-var back10secButton = document.querySelector("#back10sec");
-var stopButton = document.querySelector("#stop");
-var muteButton = document.querySelector("#mute");
-var volumeDownButton = document.querySelector("#volumeDown");
-var volumeUpButton = document.querySelector("#volumeUp");
-var changeMusic00 = document.querySelector("#play00");
-var changeMusic01 = document.querySelector("#play01");
-//var loopMusicButton = document.querySelector("#loop");
+var playButton = document.getElementById("play");
 playButton.addEventListener("click", play);
-pauseButton.addEventListener("click", pause);
+
+var skip10secButton = document.getElementById("skip10sec");
 skip10secButton.addEventListener("click", skip10sec);
+
+var back10secButton = document.getElementById("back10sec");
 back10secButton.addEventListener("click", back10sec);
+
+var stopButton = document.getElementById("stop");
 stopButton.addEventListener("click", stop);
+
+var muteButton = document.getElementById("mute");
 muteButton.addEventListener("click", mute);
+
+var volumeDownButton = document.getElementById("volumeDown");
 volumeDownButton.addEventListener("click", volumeDown);
+
+var volumeUpButton = document.getElementById("volumeUp");
 volumeUpButton.addEventListener("click", volumeUp);
+
+var changeMusic00 = document.getElementById("play00");
 play00.addEventListener("click", changetoMusic00);
+
+var changeMusic01 = document.getElementById("play01");
 play01.addEventListener("click", changetoMusic01);
-//loopMusicButton.addEventListener("click", loopMusic);
-var musicRateButton = document.querySelector("#musicRate");
+
+var musicRateButton = document.getElementById("musicRate");
 musicRateButton.addEventListener("click", changeMusicRate);
 
-var player = document.querySelector("audio");
+var player = document.getElementById("audioElement");
 player.addEventListener("ended", loopMusic);
+
+var audioContext = new AudioContext();
+var source = audioContext.createMediaElementSource(mainAudio);

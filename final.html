@@ -5,27 +5,20 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <h1 id="title">試作品</h1>
-    <audio controls preload src="audio/00.mp3"></audio>
+    <h1 id="title">Music player</h1>
+    <audio controls preload src="audio/00.mp3" id="audioElement"></audio>
     <div class="control">
+      <button id="play">再生</button>
+      <!-- <button id="pause">一時停止</button> ここいらない？-->
+      <button id="stop">再生停止</button>
       <button id="back10sec">10 秒戻る</button>
-      <button id="play">Play</button>
-      <button id="pause">Pause</button>
-      <button id="stop">停止</button>
       <button id="skip10sec">10 秒スキップ</button>
       <button id="mute">ミュート</button>
       <button id="volumeDown">音量減</button>
       <button id="volumeUp">音量増</button>
       <button id="musicRate">２倍速</button>
-
-    </div>
+　　　</div>
     
-    <br><h3>1つ目</h3>
-    <audio controls preload src="audio/01.mp3"></audio>
-    <br><h3>2つ目</h3>
-    <audio controls preload src="audio/02.mp3"></audio>
-    <br><h3>3つ目</h3>
-    <audio controls preload src="audio/03.mp3"></audio>  
     <div> 
       <h2>選曲</h2>
       <button id="play00">一曲目を再生</button>
