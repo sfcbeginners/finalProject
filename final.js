@@ -120,7 +120,7 @@ var delay = audioContext.createDelay();
 var feedback = audioContext.createGain();
 dry.gain.value = 0.8;
 wet.gain.value = 0.2;
-feedback.gain.value = 0.4;
+feedback.gain.value = 0.6;
 delay.delayTime.value = 0.2;
 
 source.connect(delay);
