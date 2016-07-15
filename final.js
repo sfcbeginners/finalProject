@@ -118,13 +118,15 @@ dry.connect(audioContext.destination);
 var wet = audioContext.createGain();
 var delay = audioContext.createDelay();
 var feedback = audioContext.createGain();
-
+dry.gain.value = 0.8;
+wet.gain.value = 0.2;
+feedback.gain.value = 0.4;
+delay.delayTime.value = 0.2;
 
 source.connect(delay);
 delay.connect(wet);
 delay.connect(feedback);
 wet.connect(audioContext.destination);
-source.connect(feedback);
 feedback.connect(delay);
 
 //var lowpass = audioContext.createBiquadFilter();
