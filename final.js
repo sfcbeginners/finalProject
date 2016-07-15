@@ -37,6 +37,10 @@ function mute(){
   mainAudio.muted = !mainAudio.muted;
 }
 
+function 時計(){
+
+}
+
 function volumeDown(){
   mainAudio.volume = Math.max(mainAudio.volume - 0.1, 0);
 }
@@ -78,8 +82,6 @@ function changeMusicRate(){
     var audio = document.getElementById("mainAudio");
     mainAudio.playbackRate  = 2;
 }
-
-
 
 var playButton = document.getElementById("play");
 playButton.addEventListener("click", play);
@@ -145,3 +147,30 @@ var lowpass = audioContext.createBiquadFilter();
 source.connect(lowpass);
 lowpass.connect(delay);
 lowpass.connect(dry);
+
+function clock()
+{
+    var weeks = new Array("Sun","Mon","Thu","Wed","Thr","Fri","Sat");
+    var now = new Date();
+    var y = now.getFullYear();
+    var mo = now.getMonth() + 1;
+    var d = now.getDate();
+    var w = weeks[now.getDay()];
+    var h = now.getHours();
+    var mi = now.getMinutes();
+    var s = now.getSeconds();
+
+    if (mo < 10) mo = "0" + mo;
+    if (d < 10) d = "0" + d;
+    if (mi < 10) mi = "0" + mi;
+    if (s < 10) s = "0" + s;
+
+    //　HTML: <span id="clock_date">()</span>
+    document.getElementById("clock_date").innerHTML =  y + "/" + mo + "/" + d + " (" + w + ")";
+    //　HTML: <span id="clock_time">()</span>
+    document.getElementById("clock_time").innerHTML = h + ":" + mi + ":" + s;
+    //　HTML: <div id="clock_frame"> 
+    document.getElementById("clock_frame").style.fontSize =  window.innerWidth / 50 + "px";
+}
+
+setInterval(clock, 1000);
