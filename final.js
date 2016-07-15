@@ -178,7 +178,7 @@ player.addEventListener("ended", loopMusic);
 var audioContext = new AudioContext();
 var source = audioContext.createMediaElementSource(mainAudio);
 
-var mazDelayTime = 1;
+var maxDelayTime = 1;
 
 var dry = audioContext.createGain();
 dry.connect(audioContext.destination);
