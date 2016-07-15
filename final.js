@@ -109,6 +109,24 @@ player.addEventListener("ended", loopMusic);
 var audioContext = new AudioContext();
 var source = audioContext.createMediaElementSource(mainAudio);
 
-var lowpass = audioContext.createBiquadFilter();
+var mazDelayTime = 1;
+
+var dry = audioContext.createGain();
+source.connect(dry);
+dry.connect(audioContext.destination);
+
+var wet = audioContext.createGain();
+var delay = audioContext.createDelay();
+var feedback = audioContext.createGain();
+
+
+source.connect(delay);
+delay.connect(wet);
+delay.connect(feedback);
+wet.connect(audioContext.destination);
+source.connect(feedback);
+feedback.connect(delay);
+
+//var lowpass = audioContext.createBiquadFilter();
 source.connect(lowpass);
 lowpass.connect(audioContext.destination);
