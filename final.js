@@ -83,6 +83,56 @@ function changeMusicRate(){
     mainAudio.playbackRate  = 2;
 }
 
+<<<<<<< HEAD
+=======
+function insertName00(){
+  var nameBar = document.getElementById("musicName");
+  nameBar.innerHTML = "01";
+}
+
+function insertName01(){
+  var nameBar = document.getElementById("musicName");
+  nameBar.innerHTML = "02";
+}
+
+function insertName02(){
+  var nameBar = document.getElementById("musicName");
+  nameBar.innerHTML = "03";
+}
+
+function insertName03(){
+  var nameBar = document.getElementById("musicName");
+  nameBar.innerHTML = "04";
+}
+
+function clock()
+{
+    var weeks = new Array("Sun","Mon","Thu","Wed","Thr","Fri","Sat");
+    var now = new Date();
+    var y = now.getFullYear();
+    var mo = now.getMonth() + 1;
+    var d = now.getDate();
+    var w = weeks[now.getDay()];
+    var h = now.getHours();
+    var mi = now.getMinutes();
+    var s = now.getSeconds();
+
+    if (mo < 10) mo = "0" + mo;
+    if (d < 10) d = "0" + d;
+    if (mi < 10) mi = "0" + mi;
+    if (s < 10) s = "0" + s;
+
+    //　HTML: <span id="clock_date">()</span>
+    document.getElementById("clock_date").innerHTML =  y + "/" + mo + "/" + d + " (" + w + ")";
+    //　HTML: <span id="clock_time">()</span>
+    document.getElementById("clock_time").innerHTML = h + ":" + mi + ":" + s;
+    //　HTML: <div id="clock_frame"> 
+    document.getElementById("clock_frame").style.fontSize =  window.innerWidth / 50 + "px";
+}
+
+setInterval(clock, 1000);
+
+>>>>>>> sfcbeginners/master
 var playButton = document.getElementById("play");
 playButton.addEventListener("click", play);
 
@@ -116,16 +166,26 @@ play02.addEventListener("click", changetoMusic02);
 var changeMusic03 = document.getElementById("play03");
 play03.addEventListener("click", changetoMusic03);
 
+var showMusicName00 = document.getElementById("00");
+showMusicName00.addEventListener("click", insertName00);
+var showMusicName01 = document.getElementById("01");
+showMusicName01.addEventListener("click", insertName01);
+var showMusicName02 = document.getElementById("02");
+showMusicName02.addEventListener("click", insertName02);
+var showMusicName03 = document.getElementById("03");
+showMusicName03.addEventListener("click", insertName03);
+
 var musicRateButton = document.getElementById("musicRate");
 musicRateButton.addEventListener("click", changeMusicRate);
 
 var player = document.getElementById("audioElement");
 player.addEventListener("ended", loopMusic);
 
+
 var audioContext = new AudioContext();
 var source = audioContext.createMediaElementSource(mainAudio);
 
-var mazDelayTime = 1;
+var maxDelayTime = 1;
 
 var dry = audioContext.createGain();
 dry.connect(audioContext.destination);
